@@ -67,12 +67,6 @@ Authorization: Bearer [JWT Token]
 ```
 {
   "id": 1,
-  "user": {
-    "id": 1,
-    "email": "test@test.com",
-    "password": "[hashed_password]",
-    "role": "user"
-  },
   "title": "새로운 게시글 제목",
   "content": "새로운 게시글 내용"
 }
@@ -103,17 +97,17 @@ Authorization: Bearer [JWT Token]
         "paged": true,
         "unpaged": false
     },
-    "totalElements": 1,
     "totalPages": 1,
+    "totalElements": 6,
     "last": true,
-    "numberOfElements": 1,
+    "numberOfElements": 6,
+    "first": true,
+    "number": 0,
     "sort": {
         "unsorted": true,
         "sorted": false,
         "empty": true
     },
-    "number": 0,
-    "first": true,
     "size": 20,
     "empty": false
 }
