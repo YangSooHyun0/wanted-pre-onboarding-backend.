@@ -22,15 +22,8 @@ public class JwtTokenProvider {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER = "Authorization";
 
-    @Value("${secret-key}")
+    @Value("${jwt.secret-key}")
     private static String secretKey;
-
-    private final Environment environment;
-
-    @PostConstruct
-    private void init() {
-        secretKey = environment.getProperty("secret-key");
-    }
 
     public static String create(User user) {
         String jwt = JWT.create()
