@@ -35,7 +35,12 @@ public class PostController {
 
         return ResponseEntity.ok(postService.getPosts(pageable));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+
+        log.info("Request to fetch post with ID: {}", id);
+
+        return ResponseEntity.ok(postService.getPostById(id));
+    }
 }
-
-
-

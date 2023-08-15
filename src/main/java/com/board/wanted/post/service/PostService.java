@@ -1,5 +1,7 @@
 package com.board.wanted.post.service;
 
+import com.board.wanted._core.errors.ErrorMessage;
+import com.board.wanted._core.errors.exception.Exception404;
 import com.board.wanted.post.dto.PostRequest;
 import com.board.wanted.post.model.Post;
 import com.board.wanted.post.repository.PostRepository;
@@ -27,5 +29,11 @@ public class PostService {
     public Page<Post> getPosts(Pageable pageable) {
 
         return postRepository.findAll(pageable);
+    }
+
+    public Post getPostById(Long id) {
+
+        return postRepository.findById(id)
+                .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
     }
 }

@@ -21,5 +21,3 @@ public class PostRequest {
         private String content;
     }
 }
-
-
