@@ -1,10 +1,12 @@
 package com.board.wanted.post.service;
 
 import com.board.wanted._core.errors.ErrorMessage;
+import com.board.wanted._core.errors.exception.Exception403;
 import com.board.wanted._core.errors.exception.Exception404;
 import com.board.wanted.post.dto.PostRequest;
 import com.board.wanted.post.model.Post;
 import com.board.wanted.post.repository.PostRepository;
+import com.board.wanted.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,5 +37,18 @@ public class PostService {
 
         return postRepository.findById(id)
                 .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
+    }
+
+    public Post updatePost(Long id, PostRequest.PostDTO postDTO, User currentUser) {
+
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
+
+        if (!post.getUser().equals(currentUser)) {
+            throw new Exception403(ErrorMessage.FORBIDDEN);
+        }
+
+        post.updateContent(postDTO.getTitle(), postDTO.getContent());
+        return postRepository.save(post);
     }
 }
