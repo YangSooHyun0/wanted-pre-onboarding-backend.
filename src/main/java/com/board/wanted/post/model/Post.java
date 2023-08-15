@@ -1,5 +1,6 @@
 package com.board.wanted.post.model;
 
+import com.board.wanted.user.model.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,9 +17,18 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Column(nullable = false, length = 200)
     private String title;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
+
+    public void updateContent(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
