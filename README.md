@@ -97,17 +97,17 @@ Authorization: Bearer [JWT Token]
         "paged": true,
         "unpaged": false
     },
-    "totalElements": 1,
     "totalPages": 1,
+    "totalElements": 6,
     "last": true,
-    "numberOfElements": 1,
+    "numberOfElements": 6,
+    "first": true,
+    "number": 0,
     "sort": {
         "unsorted": true,
         "sorted": false,
         "empty": true
     },
-    "number": 0,
-    "first": true,
     "size": 20,
     "empty": false
 }
