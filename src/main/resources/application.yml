@@ -1,3 +1,5 @@
+secret-key: 7f186169-ea6d-4bb8-80a1-148329b820c0
+
 server:
   port: 8080
   servlet:
@@ -6,12 +8,11 @@ server:
       force: true
 
 spring:
-
   datasource:
     url: jdbc:h2:mem:test;MODE=MySQL
     driver-class-name: org.h2.Driver
     username: root
-    password:
+    password: 1234
 
   h2:
     console:
