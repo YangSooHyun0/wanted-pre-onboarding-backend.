@@ -51,4 +51,15 @@ public class PostService {
         post.updateContent(postDTO.getTitle(), postDTO.getContent());
         return postRepository.save(post);
     }
+
+    public void deletePost(Long id, User currentUser) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
+
+        if (!post.getUser().equals(currentUser)) {
+            throw new Exception403(ErrorMessage.FORBIDDEN);
+        }
+
+        postRepository.delete(post);
+    }
 }
