@@ -26,6 +26,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
+    @Column(nullable = false)
     private String role;
 
     @PrePersist
