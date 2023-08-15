@@ -55,4 +55,13 @@ public class PostController {
 
         return ResponseEntity.ok(postService.updatePost(id, postDTO, currentUser));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePost(@PathVariable Long id, @AuthenticationPrincipal User currentUser) {
+
+        log.info("Request to delete post with ID: {}", id);
+
+        postService.deletePost(id, currentUser);
+        return ResponseEntity.noContent().build();
+    }
 }
