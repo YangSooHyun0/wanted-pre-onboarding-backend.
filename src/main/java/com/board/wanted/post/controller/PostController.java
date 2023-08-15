@@ -23,11 +23,12 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/create")
-    public ResponseEntity<Post> createPost(@RequestBody @Valid PostRequest.PostDTO postDTO) {
+    public ResponseEntity<Post> createPost(@RequestBody @Valid PostRequest.PostDTO postDTO,
+                                           @AuthenticationPrincipal User currentUser) {
 
         log.info("Request to create post: {}", postDTO);
 
-        return ResponseEntity.ok(postService.createPost(postDTO));
+        return ResponseEntity.ok(postService.createPost(postDTO, currentUser));
     }
 
     @GetMapping("/list")

@@ -18,11 +18,12 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Post createPost(PostRequest.PostDTO postDTO) {
+    public Post createPost(PostRequest.PostDTO postDTO, User currentUser) {
 
         Post post = Post.builder()
                 .title(postDTO.getTitle())
                 .content(postDTO.getContent())
+                .user(currentUser)
                 .build();
 
         return postRepository.save(post);
@@ -44,7 +45,7 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
 
-        if (!post.getUser().equals(currentUser)) {
+        if (!post.getUser().getId().equals(currentUser.getId())) {
             throw new Exception403(ErrorMessage.FORBIDDEN);
         }
 
@@ -53,10 +54,11 @@ public class PostService {
     }
 
     public void deletePost(Long id, User currentUser) {
+
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new Exception404(ErrorMessage.POST_NOT_FOUND));
 
-        if (!post.getUser().equals(currentUser)) {
+        if (!post.getUser().getId().equals(currentUser.getId())) {
             throw new Exception403(ErrorMessage.FORBIDDEN);
         }
 
