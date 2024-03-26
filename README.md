@@ -33,8 +33,6 @@
 ## 2. 사용자 로그인
 ### Request
 
-### Request
-
 `POST http://localhost:8080/api/user/signin`
 
 ```
